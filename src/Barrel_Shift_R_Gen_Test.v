@@ -46,7 +46,7 @@ module Barrel_Shift_R_Gen_Test;
 		#10;
 
 	end
-	
+
 	always
 		#10 amt = amt+1;
 

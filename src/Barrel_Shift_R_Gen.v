@@ -7,9 +7,9 @@ module Barrel_Shift_R_Gen#(
     );
 
     localparam WIDTH = 2**ADDRESS_BITS;
-	 
+
     wire[WIDTH-1:0] intermediate[ADDRESS_BITS:0];
-	 
+
     assign intermediate[0] = num;
     assign shifted         = intermediate[ADDRESS_BITS];
 
