@@ -9,18 +9,18 @@ module pass_through
    output           dp,
    output reg [3:0] an
    );
-   reg [3:0]    value;
-   reg [7:0]    shift_reg, shift_next,
-	            result_reg, result_next;
+   reg [3:0]        value;
+   reg [7:0]        shift_reg, shift_next,
+                    result_reg, result_next;
 
-   reg          start, start_next;
+   reg              start, start_next;
 
-   wire [7:0]   right_shifted, left_shifted;
+   wire [7:0]       right_shifted, left_shifted;
    // wire [15:0] sseg_values;
-   wire [25:0]  count;
-   wire         btn_0,
-                btn_1,
-                btn_2;
+   wire [25:0]      count;
+   wire             btn_0,
+                    btn_1,
+                    btn_2;
 
    assign led = shift_reg;
 
@@ -34,20 +34,20 @@ module pass_through
                             );
 
    counter #(26) my_timer(.clk(mclk),
-	                      .reset(0),
-	                      .count(count)
-	                      );
+                          .reset(0),
+                          .count(count)
+                          );
 
    Barrel_Shift_Gen #(.ADDRESS_BITS(3), .RIGHT(1))
    right_shifter (.num(result_reg),
-		          .amt(sw[2:0]),
-		          .shifted(right_shifted)
-	              );
+                  .amt(sw[2:0]),
+                  .shifted(right_shifted)
+                  );
    Barrel_Shift_Gen #(.ADDRESS_BITS(3), .LEFT(1))
    left_shifter (.num(result_reg),
-		         .amt(sw[2:0]),
-		         .shifted(left_shifted)
-	             );
+                 .amt(sw[2:0]),
+                 .shifted(left_shifted)
+                 );
 
    always @(posedge mclk, posedge reset)
      begin
@@ -67,11 +67,11 @@ module pass_through
 
    always @*
      begin
-	    value       <= 4'h0;
-		an          <= 4'b1111;
+        value       <= 4'h0;
+        an          <= 4'b1111;
         start_next  <= start;
         result_next <= result_reg;
-		shift_next  <= shift_reg;
+        shift_next  <= shift_reg;
 
         case(count[19:18])
           2'b00: begin
@@ -92,7 +92,7 @@ module pass_through
           end
         endcase // case (count[19:18])
 
-		case({btn_2, btn_1, btn_0})
+        case({btn_2, btn_1, btn_0})
           3'b000: begin
              if (start)
                result_next <= shift_reg;
@@ -109,7 +109,7 @@ module pass_through
              shift_next <= right_shifted;
              start_next <= 1'b1;
           end
-		endcase // case ({btn_1, btn_0})
+        endcase // case ({btn_1, btn_0})
      end
 
 endmodule

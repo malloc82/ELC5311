@@ -34,20 +34,20 @@ module Barrel_Shift_R_Gen_Test;
    // Instantiate the Unit Under Test (UUT)
    Barrel_Shift_Gen #(.ADDRESS_BITS(3), .LEFT(1))
    uut (.num(num),
-		.amt(amt),
-		.shifted(shifted)
-	    );
+        .amt(amt),
+        .shifted(shifted)
+        );
 
    initial begin
-	  // Initialize Inputs
-	  num = 8'h01;
-	  amt = 0;
+      // Initialize Inputs
+      num = 8'h01;
+      amt = 0;
 
-	  #10;
+      #10;
 
    end
 
    always
-	 #10 amt = amt+1;
+     #10 amt = amt+1;
 
 endmodule

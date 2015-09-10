@@ -17,6 +17,6 @@ module Barrel_Shift_R_Gen#(
     generate
        for(i=0;i<ADDRESS_BITS;i=i+1) begin: barrel_gen
           assign intermediate[i+1] = amt[i] ? {intermediate[i][2**i-1:0],intermediate[i][WIDTH-1:2**i]} : intermediate[i];
-	   end
+       end
     endgenerate
 endmodule

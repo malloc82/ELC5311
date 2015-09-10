@@ -20,10 +20,10 @@ module Barrel_Shift_Gen#(
        if (LEFT == 1)
          for(i=0;i<ADDRESS_BITS;i=i+1) begin: barrel_l_gen
             assign intermediate[i+1] = amt[i] ? {intermediate[i][WIDTH-2**i-1:0],intermediate[i][WIDTH-1:WIDTH-2**i]} : intermediate[i];
-	     end
+         end
        else if (RIGHT == 1)
          for(i=0;i<ADDRESS_BITS;i=i+1) begin: barrel_r_gen
             assign intermediate[i+1] = amt[i] ? {intermediate[i][2**i-1:0],intermediate[i][WIDTH-1:2**i]} : intermediate[i];
-	     end
+         end
     endgenerate
 endmodule
