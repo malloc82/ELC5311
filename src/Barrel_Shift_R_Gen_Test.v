@@ -24,30 +24,30 @@
 
 module Barrel_Shift_R_Gen_Test;
 
-	// Inputs
-	reg [7:0] num;
-	reg [2:0] amt;
+   // Inputs
+   reg [7:0] num;
+   reg [2:0] amt;
 
-	// Outputs
-	wire [7:0] shifted;
+   // Outputs
+   wire [7:0] shifted;
 
-	// Instantiate the Unit Under Test (UUT)
-	Barrel_Shift_R_Gen uut (
-		.num(num),
+   // Instantiate the Unit Under Test (UUT)
+   Barrel_Shift_Gen #(.ADDRESS_BITS(3), .LEFT(1))
+   uut (.num(num),
 		.amt(amt),
 		.shifted(shifted)
-	);
+	    );
 
-	initial begin
-		// Initialize Inputs
-		num = 8'b11010111;
-		amt = 0;
+   initial begin
+	  // Initialize Inputs
+	  num = 8'h01;
+	  amt = 0;
 
-		#10;
+	  #10;
 
-	end
+   end
 
-	always
-		#10 amt = amt+1;
+   always
+	 #10 amt = amt+1;
 
 endmodule
